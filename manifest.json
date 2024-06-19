@@ -1,0 +1,53 @@
+{
+  "_version": "1.11.0",
+  "sap.app": {
+    "id": "my.app",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "UI5 Flexible Column Layout Issue",
+    "description": "UI5 Flexible Column Layout Issue",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "my.app"
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "my.app.view.Page",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.66.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "my.app.i18n.i18n"
+        }
+      }
+    }
+  }
+}

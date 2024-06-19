@@ -1,0 +1,135 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:l="sap.ui.layout"
+  controllerName="my.app.controller.Controller">
+  <App id="app">
+    <Page
+		enableScrolling="false"
+		showHeader="true"
+		title="{i18nc>pageCategory}: {catInfo>/catName}"
+		titleAlignment="Center"
+		showNavButton="true"
+		navButtonPress="onNavToCategories">
+		<headerContent>
+			<OverflowToolbarButton type="Transparent" text="Refresh" tooltip="refresh" icon="sap-icon://refresh" press="onRefresh"/>
+		</headerContent>
+			<OverflowToolbar id="otbSubheader" width="100%">
+			<!-- Search -->
+			<SearchField id="filter" search="onFilter">
+				<layoutData>
+					<OverflowToolbarLayoutData minWidth="200px" maxWidth="24%" shrinkable="true"/>
+				</layoutData>
+			</SearchField>
+			<ToolbarSpacer width="25%"/>
+			<OverflowToolbarButton id="idExpandCollapseButton"
+				text="{i18nc>categoryExpandCollapseFeaturedProductTooltip}"
+				tooltip="{i18nc>categoryExpandCollapseFeaturedProductTooltip}"
+				icon="sap-icon://collapse-group"
+				type="Emphasized"
+				press="onHideBannerPress"/>
+			<ToolbarSpacer/>		
+			<!-- Show Panel -->
+			<Button	type="Transparent" text="Button 1" />
+			<OverflowToolbarButton 	type="Transparent" text="Button 2" tooltip="Button 2"	icon="sap-icon://list" 	/>
+			<OverflowToolbarButton type="Transparent" text="Button 3" tooltip="Button 3" icon="sap-icon://grid"/>
+		</OverflowToolbar>
+		<content>
+			<f:FlexibleColumnLayout
+				columnResize="onColumnResize"
+				autoFocus="false"
+				layout="TwoColumnsMidExpanded"
+				id="fclMain"
+				stateChange="onStateChanged"
+				restoreFocusOnBackNavigation="true"
+				backgroundDesign="Translucent">
+				<f:beginColumnPages>
+					<Page showHeader="false" enableScrolling="false">
+						<ScrollContainer id="mainArea" horizontal="true" vertical="true" focusable="false">
+							<Table sticky="ColumnHeaders" items="{path: '/', templateShareable: true}"
+								keyboardMode="Edit"
+								updateFinished="onRebuildItems">
+								<columns>
+									<Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="Inline">
+										<Label text="Code"/>
+									</Column>
+									<Column minScreenWidth="Desktop" demandPopin="true" popinDisplay="WithoutHeader">
+										<Label text="Name" />
+									</Column>
+									<Column hAlign="End" >
+										<Label text="Qty"/>
+									</Column>
+									<Column hAlign="Center" >
+										<Label text="Price"  width="9em"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{Code}" />
+											<Text text="{Name}" />
+											<Text text="{Qty}" />
+                    	<Text text="{Price}" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</Page>
+				</f:beginColumnPages>
+				<f:midColumnPages>
+					<f:DynamicPage id="dpFilters" fitContent="true" toggleHeaderOnTitleClick="false">
+						<f:content>
+							<VBox>
+								<Label text="Color:" design="Bold" class="sapUiTinyMarginBottom" />
+								<MultiComboBox selectionChange="handleSelectionChange"
+									selectionFinish="handleSelectionFinish" showClearIcon="true"
+									class="sapUiSmallMarginBottom"
+									items="{
+										path: '/Products',
+										sorter: { path: 'Name' }
+									}">
+									<core:Item key="{DisplayCode}" text="{Name}"/>
+								</MultiComboBox>
+								<Label text="Type:" design="Bold" class="sapUiTinyMarginBottom"/>
+								<MultiComboBox selectionChange="handleSelectionChange"
+									selectionFinish="handleSelectionFinish" showClearIcon="true"
+									class="sapUiSmallMarginBottom"
+									items="{
+										path: '/Products',
+										sorter: { path: 'Name' }
+									}">
+									<core:Item key="{DisplayCode}" text="{Name}"/>
+								</MultiComboBox>
+								<Label text="Manufacturer:" design="Bold" class="sapUiTinyMarginBottom"/>
+								<MultiComboBox selectionChange="handleSelectionChange"
+									selectionFinish="handleSelectionFinish" showClearIcon="true"
+									class="sapUiSmallMarginBottom"
+									items="{
+										path: '/Products',
+										sorter: { path: 'Name' }
+									}">
+									<core:Item key="{DisplayCode}" text="{Name}"/>
+								</MultiComboBox>
+								<Label text="Size:" design="Bold" class="sapUiTinyMarginBottom"/>
+								<MultiComboBox selectionChange="handleSelectionChange"
+									selectionFinish="handleSelectionFinish" showClearIcon="true"
+									class="sapUiSmallMarginBottom"
+									items="{
+										path: '/Products',
+										sorter: { path: 'Name' }
+									}">
+									<core:Item key="{DisplayCode}" text="{Name}"/>
+								</MultiComboBox>
+							</VBox>
+						</f:content>
+					</f:DynamicPage>
+				</f:midColumnPages>
+			</f:FlexibleColumnLayout>
+		</content>
+		<footer>
+			<Toolbar>
+			<Text text="footer text"/>
+			</Toolbar>
+		</footer>
+	</Page>
+  </App>
+</mvc:View>
